@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かわのひかる - 自己紹介</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.5s both;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-image:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transform: translateX(-100px);
+            opacity: 0;
+            animation: slideInLeft 0.8s ease-out forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-section:nth-child(even) {
+            transform: translateX(100px);
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .info-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section p {
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .rubiks-cube {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 5px;
+            animation: spin 2s linear infinite;
+            margin-left: 10px;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-cube {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-cube:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-cube:nth-child(2) { top: 20%; left: 80%; animation-delay: 1s; }
+        .floating-cube:nth-child(3) { top: 60%; left: 5%; animation-delay: 2s; }
+        .floating-cube:nth-child(4) { top: 80%; left: 90%; animation-delay: 3s; }
+        .floating-cube:nth-child(5) { top: 40%; left: 60%; animation-delay: 4s; }
+
+        .team-spirit {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .profile-card {
+                padding: 20px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                font-size: 45px;
+            }
+        }
+
+        /* Delay animations for staggered effect */
+        .info-section:nth-child(1) { animation-delay: 0.2s; }
+        .info-section:nth-child(2) { animation-delay: 0.4s; }
+        .info-section:nth-child(3) { animation-delay: 0.6s; }
+        .info-section:nth-child(4) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-cube"></div>
+        <div class="floating-cube"></div>
+        <div class="floating-cube"></div>
+        <div class="floating-cube"></div>
+        <div class="floating-cube"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 style="color: white; font-size: 3em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">自己紹介</h1>
+        </header>
+
+        <div class="profile-card">
+            <div class="profile-image" onclick="this.style.transform='rotate(720deg) scale(1.2)'; setTimeout(() => this.style.transform='', 1000)">
+                ひ
+            </div>
+            
+            <h2 class="name">かわのひかる</h2>
+            <p class="subtitle">チーム開発を楽しむエンジニア</p>
+
+            <div class="info-section">
+                <h3><span class="icon">👤</span>名前</h3>
+                <p><strong>かわのひかる</strong>です。よろしくお願いします！</p>
+            </div>
+
+            <div class="info-section">
+                <h3><span class="icon">🎯</span>特技</h3>
+                <p>ルービックキューブをそろえること<span class="rubiks-cube"></span><br>
+                パターン認識と論理的思考力を活かして、複雑な問題も段階的に解決していきます。</p>
+            </div>
+
+            <div class="info-section">
+                <h3><span class="icon">💪</span>チーム開発における意気込み</h3>
+                <p><strong>「なんとかなるさ」</strong><br>
+                前向きな気持ちでチャレンジし、チーム一丸となって目標達成に向けて頑張ります！
+                困難な状況でも諦めずに、みんなで協力して乗り越えていきましょう。</p>
+            </div>
+
+            <div class="info-section">
+                <h3><span class="icon">🎨</span>デザインに対する考え</h3>
+                <p><strong>シンプルかつ統一されたデザインがよき</strong><br>
+                ユーザビリティを重視し、見た目も機能も美しいものを作りたいと思っています。
+                一貫性のあるデザインで、使いやすさを追求していきます。</p>
+            </div>
+
+            <div class="team-spirit">
+                <h3 style="margin-bottom: 10px;">🚀 一緒に素晴らしいものを作りましょう！</h3>
+                <p>チームワークを大切に、お互いを尊重し合いながら成長していきたいです。</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // インタラクティブな要素を追加
+        document.addEventListener('DOMContentLoaded', function() {
+            // スクロールアニメーション
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 全ての info-section を監視
+            document.querySelectorAll('.info-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // プロフィール画像にクリックイベント
+            const profileImage = document.querySelector('.profile-image');
+            profileImage.addEventListener('click', function() {
+                this.style.animation = 'spin 1s ease-in-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 1000);
+            });
+
+            // ランダムに浮遊する要素を生成
+            function createFloatingElement() {
+                const element = document.createElement('div');
+                element.className = 'floating-cube';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.top = Math.random() * 100 + '%';
+                element.style.animationDuration = (Math.random() * 4 + 2) + 's';
+                document.querySelector('.floating-elements').appendChild(element);
+
+                setTimeout(() => {
+                    element.remove();
+                }, 6000);
+            }
+
+            // 定期的に新しい浮遊要素を作成
+            setInterval(createFloatingElement, 3000);
+        });
+    </script>
+</body>
+</html>
