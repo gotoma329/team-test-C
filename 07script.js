@@ -1,23 +1,81 @@
-// 07script.js - 歴史を振り返るページのインタラクション
+/**
+ * 07script.js - 歴史を振り返るページのインタラクション
+ * 
+ * 概要：
+ * このファイルは「歴史を振り返る」ページの動的なインタラクションを管理します。
+ * シンプルでありながらワクワクする体験を提供することを目的としています。
+ * 
+ * 主な機能：
+ * - タイムラインの段階的表示アニメーション
+ * - 統計数字のリアルタイムカウントアップ
+ * - スクロール連動型のエフェクト
+ * - ホバーやクリックによるインタラクティブ要素
+ * - 背景パーティクルエフェクト
+ * - キーボードショートカット機能
+ * 
+ * 技術仕様：
+ * - ES6+ JavaScript機能を使用
+ * - Intersection Observer APIでパフォーマンス最適化
+ * - CSS-in-JSによる動的スタイル制御
+ * 
+ * 作成日：2025年10月
+ * 更新日：2025年10月22日
+ */
+
+// =============================================================================
+// メイン初期化処理
+// =============================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // アニメーション遅延の設定
-    setTimelineAnimations();
+    console.log('歴史ページの初期化を開始...');
     
-    // 数字カウントアップアニメーション
-    animateStatNumbers();
-    
-    // スクロールアニメーション
-    setupScrollAnimations();
-    
-    // インタラクティブエフェクト
-    setupInteractiveEffects();
-    
-    // パーティクルエフェクト
-    createParticleEffect();
+    try {
+        // アニメーション初期化
+        initializeAnimations();
+        
+        // インタラクティブ機能設定
+        setupInteractiveFeatures();
+        
+        // ビジュアルエフェクト作成
+        createVisualEffects();
+        
+        console.log('歴史ページの初期化が完了しました');
+    } catch (error) {
+        console.error('初期化中にエラーが発生しました:', error);
+    }
 });
 
-// タイムラインアニメーションの設定
+/**
+ * 全てのアニメーションを初期化する関数
+ */
+function initializeAnimations() {
+    setTimelineAnimations();
+    animateStatNumbers();
+    setupScrollAnimations();
+}
+
+/**
+ * インタラクティブ機能を設定する関数
+ */
+function setupInteractiveFeatures() {
+    setupInteractiveEffects();
+    setupKeyboardShortcuts();
+}
+
+/**
+ * ビジュアルエフェクトを作成する関数
+ */
+function createVisualEffects() {
+    createParticleEffect();
+    showWelcomeMessage();
+}
+
+// =============================================================================
+// タイムラインアニメーション
+// =============================================================================
+/**
+ * タイムラインアニメーションの設定
+ */
 function setTimelineAnimations() {
     const timelineItems = document.querySelectorAll('.timeline-item');
     
@@ -39,7 +97,13 @@ function setTimelineAnimations() {
     });
 }
 
-// 統計数字のカウントアップアニメーション
+// =============================================================================
+// 統計数字アニメーション
+// =============================================================================
+
+/**
+ * 統計数字のカウントアップアニメーション
+ */
 function animateStatNumbers() {
     const statNumbers = document.querySelectorAll('.stat-number');
     
@@ -58,7 +122,11 @@ function animateStatNumbers() {
     });
 }
 
-// 数字カウントアップの実行
+/**
+ * 数字カウントアップの実行
+ * @param {HTMLElement} element - 対象の要素
+ * @param {number} target - 目標値
+ */
 function animateNumber(element, target) {
     const duration = 2000; // 2秒
     const startTime = performance.now();
@@ -89,7 +157,13 @@ function animateNumber(element, target) {
     requestAnimationFrame(updateNumber);
 }
 
-// スクロールアニメーションの設定
+// =============================================================================
+// スクロール連動アニメーション
+// =============================================================================
+
+/**
+ * スクロールアニメーションの設定
+ */
 function setupScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -125,7 +199,13 @@ function setupScrollAnimations() {
     });
 }
 
-// インタラクティブエフェクトの設定
+// =============================================================================
+// インタラクティブエフェクト
+// =============================================================================
+
+/**
+ * インタラクティブエフェクトの設定
+ */
 function setupInteractiveEffects() {
     // カードのホバーエフェクト
     const cards = document.querySelectorAll('.stat-card, .timeline-content, .message-card');
@@ -254,63 +334,100 @@ function createParticle(container) {
     };
 }
 
+// =============================================================================
 // キーボードショートカット
-document.addEventListener('keydown', function(e) {
-    // スペースキーでスムーズスクロール
-    if (e.code === 'Space' && !e.target.matches('input, textarea')) {
-        e.preventDefault();
-        const windowHeight = window.innerHeight;
-        window.scrollBy({
-            top: windowHeight * 0.8,
-            behavior: 'smooth'
-        });
-    }
-    
-    // Hキーでホームへ
-    if (e.code === 'KeyH' && e.ctrlKey) {
-        e.preventDefault();
-        const homeLink = document.querySelector('a[href*="index.html"]');
-        if (homeLink) {
-            homeLink.click();
+// =============================================================================
+
+/**
+ * キーボードショートカットを設定する関数
+ */
+function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', function(e) {
+        // スペースキーでスムーズスクロール
+        if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+            e.preventDefault();
+            const windowHeight = window.innerHeight;
+            window.scrollBy({
+                top: windowHeight * 0.8,
+                behavior: 'smooth'
+            });
         }
-    }
-});
+        
+        // Ctrl+Hでホームへ移動
+        if (e.code === 'KeyH' && e.ctrlKey) {
+            e.preventDefault();
+            const homeLink = document.querySelector('a[href*="index.html"]');
+            if (homeLink) {
+                homeLink.click();
+            }
+        }
+    });
+}
 
-// ページ読み込み完了時のウェルカムアニメーション
-window.addEventListener('load', function() {
-    // ウェルカムメッセージ
-    setTimeout(() => {
-        const welcomeMsg = document.createElement('div');
-        welcomeMsg.style.position = 'fixed';
-        welcomeMsg.style.top = '50%';
-        welcomeMsg.style.left = '50%';
-        welcomeMsg.style.transform = 'translate(-50%, -50%)';
-        welcomeMsg.style.background = 'rgba(74, 144, 226, 0.95)';
-        welcomeMsg.style.color = 'white';
-        welcomeMsg.style.padding = '20px 40px';
-        welcomeMsg.style.borderRadius = '15px';
-        welcomeMsg.style.fontSize = '1.2rem';
-        welcomeMsg.style.zIndex = '1000';
-        welcomeMsg.style.opacity = '0';
-        welcomeMsg.style.transition = 'all 0.5s ease';
-        welcomeMsg.textContent = '歴史の旅にようこそ！';
-        
-        document.body.appendChild(welcomeMsg);
-        
+// =============================================================================
+// ウェルカムメッセージ
+// =============================================================================
+
+/**
+ * ページ読み込み完了時のウェルカムメッセージを表示する関数
+ */
+function showWelcomeMessage() {
+    window.addEventListener('load', function() {
         setTimeout(() => {
-            welcomeMsg.style.opacity = '1';
-        }, 100);
-        
-        setTimeout(() => {
-            welcomeMsg.style.opacity = '0';
+            const welcomeMsg = createWelcomeElement();
+            document.body.appendChild(welcomeMsg);
+            
+            // フェードイン
             setTimeout(() => {
-                welcomeMsg.remove();
-            }, 500);
-        }, 2000);
-    }, 1000);
-});
+                welcomeMsg.style.opacity = '1';
+            }, 100);
+            
+            // フェードアウトと削除
+            setTimeout(() => {
+                welcomeMsg.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeMsg.remove();
+                }, 500);
+            }, 2000);
+        }, 1000);
+    });
+}
 
-// 動的CSSアニメーションの追加
+/**
+ * ウェルカムメッセージ要素を作成する関数
+ */
+function createWelcomeElement() {
+    const welcomeMsg = document.createElement('div');
+    welcomeMsg.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(74, 144, 226, 0.95);
+        color: white;
+        padding: 20px 40px;
+        border-radius: 15px;
+        font-size: 1.2rem;
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.5s ease;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    `;
+    welcomeMsg.textContent = '🎉 歴史の旅にようこそ！';
+    return welcomeMsg;
+}
+
+// =============================================================================
+// 動的CSSアニメーション
+// =============================================================================
+
+/**
+ * JavaScriptから動的に追加するCSSアニメーション
+ * タイムラインマーカーやグラデーション効果など、
+ * インタラクション時に必要となるアニメーションを定義
+ */
 const dynamicStyles = `
     @keyframes markerPop {
         0% { transform: translateX(-50%) scale(1); }
@@ -340,7 +457,14 @@ const dynamicStyles = `
     }
 `;
 
+/**
+ * 動的スタイルをページに追加する関数
+ */
+function addDynamicStyles() {
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = dynamicStyles;
+    document.head.appendChild(styleSheet);
+}
+
 // 動的スタイルを追加
-const styleSheet = document.createElement('style');
-styleSheet.textContent = dynamicStyles;
-document.head.appendChild(styleSheet);
+addDynamicStyles();
