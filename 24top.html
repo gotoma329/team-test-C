@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>来年の天気予報 — 来年の今日の天気は？</title>
+  <link rel="stylesheet" href="./24style.css">
+</head>
+<body>
+  <div class="emoji-layer" aria-hidden="true"></div>
+  <main class="container">
+    <header class="header">
+      <div class="logo">24</div>
+      <div>
+        <div class="title">来年の天気予報 — 来年の今日の天気は？</div>
+        <div class="lead">面白くて思わず笑える予報をお届けします。真剣に信じないでね！</div>
+      </div>
+    </header>
+
+    <section class="card">
+      <h3>来年の今日の天気は？</h3>
+      <div class="row">
+        <button id="predict-next-year" class="btn">未来を覗く🔮</button>
+        <div class="small note">科学じゃなくてエンタメです — 結果は毎回変わります</div>
+      </div>
+      <div id="out-next-year"></div>
+    </section>
+
+    <section class="card">
+      <h3>今年の12月の天気を予想する</h3>
+      <div class="row">
+        <button id="predict-dec" class="btn">12月を当てる🎯</button>
+        <div class="small note">冬の備えをするヒントになる…かもしれない</div>
+      </div>
+      <div id="out-dec"></div>
+    </section>
+
+    <section class="card">
+      <h3>即席ジョーク予報</h3>
+      <div class="row">
+        <button id="surprise" class="btn">ランダム予報を生成🤣</button>
+      </div>
+      <div id="out-surprise"></div>
+    </section>
+
+    <footer class="card note">
+      <div>このページは娯楽目的です。リアルな天気は専門の気象機関を参照してください。</div>
+      <div style="margin-top:8px"><a href="./24index.html" class="small">24indexへ戻る</a></div>
+    </footer>
+
+  </main>
+  <script src="./24script.js"></script>
+</body>
+</html>

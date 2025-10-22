@@ -1,0 +1,38 @@
+/* 24style.css
+   面白くて思わず笑えるような軽快なデザイン
+*/
+:root{
+  --bg:#fff8f3;
+  --panel:#fff6e8;
+  --muted:#6b5b4b;
+  --accent:#ff8c69;
+  --accent-2:#ffd86b;
+  --max-width:980px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family: 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;background:linear-gradient(180deg,var(--bg),#fffdf8);color:#2b2b2b}
+.container{max-width:var(--max-width);margin:40px auto;padding:28px}
+.header{display:flex;align-items:center;gap:16px}
+.logo{width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:22px;box-shadow:0 10px 30px rgba(255,140,105,0.12)}
+.title{font-size:22px;font-weight:800}
+.lead{color:var(--muted);margin-top:6px}
+.card{background:var(--panel);border-radius:14px;padding:18px;margin-top:18px;box-shadow:0 6px 18px rgba(0,0,0,0.05)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+.small{background:#fff;border:1px dashed rgba(0,0,0,0.06);padding:8px 10px;border-radius:10px}
+.result{margin-top:14px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fffbe6);font-weight:700}
+.humor{color:#ff6b6b;font-weight:800}
+.note{color:var(--muted);font-size:13px;margin-top:8px}
+
+/* 落ちる絵文字 */
+.emoji-layer{position:fixed;left:0;top:0;pointer-events:none;width:100%;height:100%;overflow:hidden}
+.emoji{
+  position:absolute;left:0;top:-10vh;font-size:22px;opacity:0;transform:translateY(-10vh) rotate(0deg);
+}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg);opacity:1}
+}
+
+/* 小画面 */
+@media (max-width:560px){.header{flex-direction:row;gap:10px}.logo{width:56px;height:56px}}
