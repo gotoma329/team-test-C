@@ -1,0 +1,24 @@
+/* 12style.css: シンプルでかわいらしいスタイル */
+:root{
+  --bg:#fffaf6; --card:#ffffff; --muted:#6b7280; --accent:#ff7ab6; --accent-2:#60a5fa; --shadow:rgba(2,6,23,0.06);
+  --rounded:12px; --gap:16px
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,-apple-system,'Noto Sans JP',sans-serif;background:var(--bg);color:#102027}
+.container{max-width:920px;margin:32px auto;padding:18px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800}
+.title{font-size:18px;font-weight:700}
+.nav a{color:var(--muted);text-decoration:none;border:1px solid transparent;padding:8px;border-radius:10px}
+.nav a:hover{background:#fff1f8}
+.card{background:var(--card);border-radius:var(--rounded);padding:14px;box-shadow:0 8px 20px var(--shadow);margin-top:14px}
+.week{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.day{width:120px;min-height:120px;border-radius:10px;padding:10px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.85));display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.day .date{font-size:13px;color:var(--muted);margin-bottom:8px}
+.day .temp{font-size:18px;font-weight:700}
+.day .icon{font-size:28px;margin-bottom:6px}
+.badge{position:absolute;top:8px;right:8px;background:#ffdada;color:#b33939;padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px}
+.note{margin-top:10px;color:var(--muted);font-size:14px}
+.footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+@media (max-width:720px){.day{width:46%;min-width:140px}}

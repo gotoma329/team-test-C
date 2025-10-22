@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>宮崎の週間天気 — かわいい天気ページ</title>
+    <link rel="stylesheet" href="./12style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand">
+          <div class="logo">☁️</div>
+          <div>
+            <div class="title">宮崎の今後1週間の天気</div>
+            <div class="muted">イラスト付きで、傘の要否をお知らせします</div>
+          </div>
+        </div>
+        <nav class="nav"><a href="./12index.html">自己紹介に戻る</a></nav>
+      </div>
+
+      <div class="card">
+        <div class="label">概況</div>
+        <div id="statusTop" class="note">読み込み中...</div>
+
+        <div class="week" id="week" aria-live="polite"></div>
+        <div class="footer">データはサンプルです — 実運用では天気APIを使用してください</div>
+      </div>
+    </div>
+
+    <script src="./12script.js"></script>
+  </body>
+</html>
